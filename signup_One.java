@@ -75,27 +75,29 @@ public class signup_One extends JFrame implements ActionListener {
         dateChooser.setForeground(Color.BLACK);
         add(dateChooser);
 
-        // Gender label
-        JLabel gender = new JLabel("Gender:");
-        gender.setFont(new Font("Arial Black", Font.BOLD, 28));
-        gender.setBounds(160, 300, 250, 60);
-        add(gender);
+       // Gender radio buttons
+       JLabel gender = new JLabel("Gender:");
+       gender.setFont(new Font("Arial Black", Font.BOLD, 28));
+       gender.setBounds(160, 300, 250, 60);
+       add(gender);
 
-        // Male radio button
-        male = new JRadioButton("Male");
-        male.setFont(new Font("Arial", Font.PLAIN, 20));
-        male.setBackground(Color.white);
-        male.setBounds(400, 310, 100, 30);
-        male.setActionCommand("Male"); // Set action command for the male radio button
-        add(male);
+       male = new JRadioButton("Male");
+       male.setFont(new Font("Arial", Font.PLAIN, 20));
+       male.setBackground(Color.white);
+       male.setBounds(400, 310, 100, 30);
+       male.setActionCommand("Male");
+       add(male);
 
-        // Female radio button
-        female = new JRadioButton("Female");
-        female.setFont(new Font("Arial", Font.PLAIN, 20));
-        female.setBackground(Color.WHITE);
-        female.setBounds(570, 310, 100, 30);
-        female.setActionCommand("Female"); // Set action command for the female radio button
-        add(female);
+       female = new JRadioButton("Female");
+       female.setFont(new Font("Arial", Font.PLAIN, 20));
+       female.setBackground(Color.WHITE);
+       female.setBounds(570, 310, 100, 30);
+       female.setActionCommand("Female");
+       add(female);
+
+       ButtonGroup genderGroup = new ButtonGroup();
+       genderGroup.add(male);
+       genderGroup.add(female);
 
         // Email label
         JLabel mail = new JLabel("E-Mail Address:");
@@ -109,27 +111,29 @@ public class signup_One extends JFrame implements ActionListener {
         mailTextField.setBounds(430, 355, 210, 40);
         add(mailTextField);
 
-        // Marital status label
+        // Marital status radio buttons
         JLabel marital = new JLabel("Marital Status:");
         marital.setFont(new Font("Arial Black", Font.BOLD, 28));
         marital.setBounds(160, 400, 250, 60);
         add(marital);
 
-        // Single radio button
         single = new JRadioButton("Single");
         single.setFont(new Font("Arial", Font.PLAIN, 20));
         single.setBackground(Color.WHITE);
         single.setBounds(420, 420, 100, 30);
-        single.setActionCommand("Single"); // Set action command for the single radio button
+        single.setActionCommand("Single");
         add(single);
 
-        // Married radio button
         married = new JRadioButton("Married");
         married.setFont(new Font("Arial", Font.PLAIN, 20));
         married.setBackground(Color.WHITE);
         married.setBounds(550, 420, 100, 30);
-        married.setActionCommand("Married"); // Set action command for the married radio button
+        married.setActionCommand("Married");
         add(married);
+
+        ButtonGroup maritalGroup = new ButtonGroup();
+        maritalGroup.add(single);
+        maritalGroup.add(married);
 
         // Address label
         JLabel address = new JLabel("Address:");
