@@ -225,7 +225,14 @@ public class signup_Two extends JFrame implements ActionListener {
 
             String pan=panJTextField.getText();
             String aadharString=addJTextField.getText();
-            
+            if (isValidPan(pan) && isValidAadhar(aadharString)) 
+            {
+              JOptionPane.showMessageDialog(signup_Two.this,"PAN and Aadhar card numbers are valid. Authentication success!");
+            }
+            else{
+              JOptionPane.showMessageDialog(signup_Two.this,"Invalid PAN or Aadhar card number. Authentication failed!");
+            }
+
             try {
                 Conn connection=new Conn();
     
