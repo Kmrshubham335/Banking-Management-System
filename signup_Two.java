@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.sql.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class signup_Two extends JFrame implements ActionListener {
         JTextField panJTextField,addJTextField;
@@ -33,6 +35,7 @@ public class signup_Two extends JFrame implements ActionListener {
         ree.setBounds(300,140,400,30);
         ree.setBackground(Color.WHITE);
         add(ree);
+        ree.setSelectedItem(null);
        
 
         JLabel categoriesJLabel = new JLabel("Categories:");
@@ -45,6 +48,7 @@ public class signup_Two extends JFrame implements ActionListener {
         cate.setBounds(300,190,400,30);
         cate.setBackground(Color.WHITE);
         add(cate);
+        cate.setSelectedItem(null);
        
         JLabel incomeJLabel = new JLabel("Income:");
         incomeJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -56,6 +60,7 @@ public class signup_Two extends JFrame implements ActionListener {
         in.setBounds(300,240,400,30);
         in.setBackground(Color.WHITE);
         add(in);
+        in.setSelectedItem(null);
 
         JLabel educationJLabel = new JLabel("Educational:");
         educationJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -67,6 +72,7 @@ public class signup_Two extends JFrame implements ActionListener {
         ed.setBounds(300,290,400,30);
         ed.setBackground(Color.WHITE);
         add(ed);
+        ed.setSelectedItem(null);
 
         JLabel qualificationJLabel = new JLabel("Qualification:");
         qualificationJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -78,6 +84,7 @@ public class signup_Two extends JFrame implements ActionListener {
         qualify.setBounds(300,340,400,30);
         qualify.setBackground(Color.WHITE);
         add(qualify);
+        qualify.setSelectedItem(null);
 
         JLabel occupationJLabel = new JLabel("Occupation:");
         occupationJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -89,6 +96,7 @@ public class signup_Two extends JFrame implements ActionListener {
         oc.setBounds(300,390,400,30);
         oc.setBackground(Color.WHITE);
         add(oc);
+        oc.setSelectedItem(null);
 
 
         JLabel panJLabel = new JLabel("Pan Number:");
@@ -100,6 +108,7 @@ public class signup_Two extends JFrame implements ActionListener {
         panJTextField.setFont(new Font("Raleway",Font.PLAIN,22));
         panJTextField.setBounds(300,440,300,30);
         add(panJTextField);
+        
 
         JLabel aadharJLabel = new JLabel("AadharNumber:");
         aadharJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -180,6 +189,29 @@ public class signup_Two extends JFrame implements ActionListener {
         String qString=(String) qualify.getSelectedItem();
         String seniorCitizen=null;
         String exist=null;
+        //validating
+
+        if(ree.getSelectedItem()==null){
+          JOptionPane.showMessageDialog(signup_Two.this,"Please select your Religion");
+        }
+        else if(cate.getSelectedItem()==null){
+          JOptionPane.showMessageDialog(signup_Two.this,"Please Select Category");
+        }
+        else if(in.getSelectedItem()==null){
+          JOptionPane.showMessageDialog(signup_Two.this," Please select your Income ");
+        }
+        else if(ed.getSelectedItem()==null){
+          JOptionPane.showMessageDialog(signup_Two.this,"Please Select your Education");
+        }
+        else if(oc.getSelectedItem()==null){
+          JOptionPane.showMessageDialog(signup_Two.this,"Please Select Your Occupation");
+        }
+        else if(qualify.getSelectedItem()==null){
+          JOptionPane.showMessageDialog(signup_Two.this,"Please Select Your Qualification");
+        }
+        else{
+          System.out.println("No selection is made");
+        }
         if(syes.isSelected()){
             seniorCitizen="yes";
                 }  
@@ -193,6 +225,7 @@ public class signup_Two extends JFrame implements ActionListener {
 
             String pan=panJTextField.getText();
             String aadharString=addJTextField.getText();
+            
             try {
                 Conn connection=new Conn();
     
@@ -200,6 +233,7 @@ public class signup_Two extends JFrame implements ActionListener {
                 String insertDataQuery = "INSERT INTO signup_Two VALUES ('" +
                         formno + "', '" + religious + "', '" + cat + "', '" + income + "', '" + education + "', '" + qString + "', '" + occupation + "', '" + pan + "', '" + aadharString + "', '" + seniorCitizen + "', '" + exist + "')";
                   connection.s.executeUpdate(insertDataQuery);
+
     
                 // Display success message or perform any other actions as needed
                 System.out.println("Data inserted successfully!");
@@ -207,4 +241,17 @@ public class signup_Two extends JFrame implements ActionListener {
                 System.out.println("Error: " + ex);
             }
           }                  
+        public static boolean isValidPan(String pan){
+          String regex ="[A-Z]{5}[0-9]{4}[A-Z]{1}";
+          Pattern pattern = Pattern.compile(regex);
+          Matcher matcher = pattern.matcher(pan);
+          return matcher.matches();
         }
+          public static boolean isValidAadhar(String aadharString){
+          String regex ="[A-Z]{5}[0-9]{4}[A-Z]{1}";
+          Pattern pattern = Pattern.compile(regex);
+          Matcher matcher = pattern.matcher(aadharString);
+          return matcher.matches();
+      }
+
+    }

@@ -75,7 +75,8 @@ public class login extends JFrame implements ActionListener {
         @Override
     public void actionPerformed(ActionEvent ae) {
       if(ae.getSource()==login){
-
+        // String cardNumber=CardNo.getText();
+        // String pin =new String(pinNo.getPassword());
       }
       else if(ae.getSource()==sign)
       {
