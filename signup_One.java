@@ -189,6 +189,7 @@ public class signup_One extends JFrame implements ActionListener {
         next.setBounds(900, 660, 80, 30);
         next.addActionListener(this); // Add action listener to the next button
         add(next);
+
     }
 
     @Override
@@ -240,6 +241,7 @@ public class signup_One extends JFrame implements ActionListener {
             } else if (pin == null || !(pin.matches("\\d+"))) {
                 JOptionPane.showMessageDialog(signup_One.this, "Invalid Pincode format!");
             } else {
+                JOptionPane.showMessageDialog(signup_One.this, "Data Entered Successfully");
                 // establish connection 
                 
                 Conn con = new Conn();

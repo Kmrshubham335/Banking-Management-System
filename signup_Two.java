@@ -232,7 +232,6 @@ public class signup_Two extends JFrame implements ActionListener {
             else{
               JOptionPane.showMessageDialog(signup_Two.this,"Invalid PAN or Aadhar card number. Authentication failed!");
             }
-
             try {
                 Conn connection=new Conn();
     
@@ -240,7 +239,7 @@ public class signup_Two extends JFrame implements ActionListener {
                 String insertDataQuery = "INSERT INTO signup_Two VALUES ('" +
                         formno + "', '" + religious + "', '" + cat + "', '" + income + "', '" + education + "', '" + qString + "', '" + occupation + "', '" + pan + "', '" + aadharString + "', '" + seniorCitizen + "', '" + exist + "')";
                   connection.s.executeUpdate(insertDataQuery);
-
+                              JOptionPane.showMessageDialog(signup_Two.this, "Data Entered Successfully");
     
                 // Display success message or perform any other actions as needed
                 System.out.println("Data inserted successfully!");
@@ -249,16 +248,15 @@ public class signup_Two extends JFrame implements ActionListener {
             }
           }                  
         public static boolean isValidPan(String pan){
-          String regex ="[A-Z]{5}[0-9]{4}[A-Z]{1}";
-          Pattern pattern = Pattern.compile(regex);
+          String panregex ="[A-Z]{5}[0-9]{4}[A-Z]{1}";
+          Pattern pattern = Pattern.compile(panregex);
           Matcher matcher = pattern.matcher(pan);
           return matcher.matches();
         }
           public static boolean isValidAadhar(String aadharString){
-          String regex ="[A-Z]{5}[0-9]{4}[A-Z]{1}";
-          Pattern pattern = Pattern.compile(regex);
+          String adharregex ="[A-Z]{5}[0-9]{4}[A-Z]{1}";
+          Pattern pattern = Pattern.compile(adharregex);
           Matcher matcher = pattern.matcher(aadharString);
           return matcher.matches();
       }
-
     }
