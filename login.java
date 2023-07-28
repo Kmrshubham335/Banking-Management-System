@@ -2,96 +2,79 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 public class login extends JFrame implements ActionListener {
-  JButton login,clear ,sign;
-  JTextField CardNo;
-  JPasswordField pinNo;
+    private JTextField cardNoTextField;
+    private JPasswordField pinNoPasswordField;
+
     login() {
-        setLayout(null);          // Set custom layout manager
-        setSize(500, 500);  // Set the size of the JFrame
-        setVisible(true);               // Make the JFrame visible
-        setLocation(400, 200);         // Set the location of the JFrame
-        setTitle("Automatic Teller Machine");   // Set the title of the JFrame
+        setTitle("Automatic Teller Machine");
+        setSize(1300, 1300);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(5, 1));
+        getContentPane().setBackground(Color.WHITE);
 
-        // Load the image
-        ImageIcon ii = new ImageIcon(ClassLoader.getSystemResource("icons/bankicon.jpg"));
-        Image i1 = ii.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
-        ImageIcon icon = new ImageIcon(i1);
 
-        // Create and configure the JLabel with the image
-        JLabel jl1 = new JLabel(icon);
-        jl1.setBounds(70, 100, 100, 100);   // Set the   position and size of the JLabel
-        add(jl1); // Add the JLabel to the JFrame
+        ImageIcon gifIcon = new ImageIcon(ClassLoader.getSystemResource("icons/login-2385.gif"));
+        Image gifImage = gifIcon.getImage().getScaledInstance(150, 200, Image.SCALE_DEFAULT);
+        ImageIcon gifImageIcon = new ImageIcon(gifImage);
+        JLabel gifLabel = new JLabel(gifImageIcon);
+        gifLabel.setHorizontalAlignment(JLabel.CENTER);
+        add(gifLabel);
 
-        getContentPane().setBackground(Color.WHITE); // Set the background color of the JFrame
+        
 
-        JLabel text =new JLabel("Welcome to ATM");
-        text.setFont(new Font("SansSerif",Font.BOLD,40));
-        text.setBounds(500, 100, 400, 40);
-        add(text);
+        JLabel welcomeLabel = new JLabel("WELCOME TO ATM");
+        welcomeLabel.setFont(new Font("Caslon", Font.BOLD, 30));
+        welcomeLabel.setHorizontalAlignment(JLabel.CENTER);
+        add(welcomeLabel);
 
-        JLabel cardno =new JLabel("Enter the card number:");
-        cardno.setFont(new Font("SansSerif",Font.PLAIN,38));
-        cardno.setBounds(200, 200, 400, 40);
-        add(cardno);
+        JPanel cardNoPanel = new JPanel(new FlowLayout());
+        JLabel cardNoLabel = new JLabel("Enter the card number:");
+        cardNoTextField = new JTextField(20);
+        cardNoPanel.add(cardNoLabel);
+        cardNoPanel.add(cardNoTextField);
+        add(cardNoPanel);
 
-         CardNo=new JTextField();
-        CardNo.setBounds(600, 202, 250, 40);
-        CardNo.setFont(new Font("Arial",Font.BOLD,15));
-        add(CardNo);
+        JPanel pinNoPanel = new JPanel(new FlowLayout());
+        JLabel pinNoLabel = new JLabel("Enter the PIN:");
+        pinNoPasswordField = new JPasswordField(20);
+        pinNoPanel.add(pinNoLabel);
+        pinNoPanel.add(pinNoPasswordField);
+        add(pinNoPanel);
 
-        JLabel pin =new JLabel("Enter the Pin:");
-        pin.setFont(new Font("SansSerif",Font.PLAIN,38));
-        pin.setBounds(200, 300, 350, 40);
-        add(pin);
-
-        pinNo=new JPasswordField();
-        pinNo.setBounds(440,301,250,40);
-        pinNo.setFont(new Font("Arial",Font.BOLD,15));
-        add(pinNo);
-
-         login=new JButton("SIGN IN");
-        login.setBounds(300,355,100,30);
-        login.setBackground(Color.BLACK);
-        login.setForeground(Color.WHITE);
-        login.addActionListener(this);
-        add(login);
-
-         clear=new JButton("CLEAR");
-        clear.setBounds(500,355,100,30);
-        clear.setBackground(Color.BLACK);
-        clear.setForeground(Color.WHITE);
-        clear.addActionListener(this);
-        add(clear);
-
-         sign=new JButton("Sign up");
-        sign.setBounds(320,394,230,30);
-        sign.setBackground(Color.BLACK);
-        sign.setForeground(Color.WHITE);
-        sign.addActionListener(this);
-        add(sign);
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JButton signInButton = new JButton("SIGN IN");
+        signInButton.addActionListener(this);
+        JButton clearButton = new JButton("CLEAR");
+        clearButton.addActionListener(this);
+        JButton signUpButton = new JButton("Sign up");
+        signUpButton.addActionListener(this);
+        buttonPanel.add(signInButton);
+        buttonPanel.add(clearButton);
+        buttonPanel.add(signUpButton);
+        add(buttonPanel);
+        
     }
 
-        @Override
+    @Override
     public void actionPerformed(ActionEvent ae) {
-      if(ae.getSource()==login){
-        // String cardNumber=CardNo.getText();
-        // String pin =new String(pinNo.getPassword());
-      }
-      else if(ae.getSource()==sign)
-      {
-        setVisible(false);
-        new signup_One().setVisible(true);
-      }
-      else if(ae.getSource()==clear){
-        CardNo.setText("");
-        pinNo.setText("");
-      }
-
+        if (ae.getActionCommand().equals("SIGN IN")) {
+            String cardNumber = cardNoTextField.getText();
+            String pin = new String(pinNoPasswordField.getPassword());
+            // Add login validation and other logic here
+        } else if (ae.getActionCommand().equals("CLEAR")) {
+            cardNoTextField.setText("");
+            pinNoPasswordField.setText("");
+        } else if (ae.getActionCommand().equals("Sign up")) {
+            setVisible(false);
+            new signup_One().setVisible(true);
+        }
     }
+
     public static void main(String[] args) {
-      new login();
+        SwingUtilities.invokeLater(() -> new login().setVisible(true));
     }
-    }
-
+}
 

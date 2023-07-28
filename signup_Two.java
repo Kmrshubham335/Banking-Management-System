@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -17,8 +18,8 @@ public class signup_Two extends JFrame implements ActionListener {
          setLayout(null);
         setVisible(true);
         setTitle("NEW ACCOUNT APPLICATION FORM PAGE 2");
-        setSize(850,800);
-        setLocation(300,10);
+        setSize(1300,1300);
+        setLocation(30,30);
 
         JLabel addDetailsJLabel = new JLabel("Page2 - Additional Details ");
         addDetailsJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -142,6 +143,8 @@ public class signup_Two extends JFrame implements ActionListener {
         ButtonGroup SGroup = new ButtonGroup();
         SGroup.add(syes);
         SGroup.add(sno);
+        sno.setOpaque(false);
+        syes.setOpaque(false);
 
       JLabel exitJLabel = new JLabel("Existing Account :");
         exitJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -165,6 +168,9 @@ public class signup_Two extends JFrame implements ActionListener {
         ButtonGroup SsGroup = new ButtonGroup();
         SsGroup.add(eyes);
         SsGroup.add(eno);
+        eyes.setOpaque(false);
+        eno.setOpaque(false);
+
         
         JButton next = new JButton("Next");
         next.setForeground(Color.black);

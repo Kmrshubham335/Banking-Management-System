@@ -268,4 +268,3 @@ public class signup_One extends JFrame implements ActionListener {
         new signup_One();
     }
 }
-
