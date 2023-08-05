@@ -1,6 +1,4 @@
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -15,11 +13,6 @@ public class signup_Two extends JFrame implements ActionListener {
         String formno;
     signup_Two(String formno){
         this.formno=formno;
-         setLayout(null);
-        setVisible(true);
-        setTitle("NEW ACCOUNT APPLICATION FORM PAGE 2");
-        setSize(1300,1300);
-        setLocation(30,30);
 
         JLabel addDetailsJLabel = new JLabel("Page2 - Additional Details ");
         addDetailsJLabel.setFont(new Font("Raleway",Font.BOLD ,22));
@@ -179,6 +172,12 @@ public class signup_Two extends JFrame implements ActionListener {
         next.setBounds(900, 660, 80, 30);
         next.addActionListener(this); // Add action listener to the next button
         add(next);
+          setLayout(null);
+        setVisible(true);
+        setTitle("NEW ACCOUNT APPLICATION FORM PAGE 2");
+        setSize(1300,1300);
+        setLocation(0,0);
+
     }
 
     public static void main(String[] args) {
@@ -246,6 +245,9 @@ public class signup_Two extends JFrame implements ActionListener {
                         formno + "', '" + religious + "', '" + cat + "', '" + income + "', '" + education + "', '" + qString + "', '" + occupation + "', '" + pan + "', '" + aadharString + "', '" + seniorCitizen + "', '" + exist + "')";
                   connection.s.executeUpdate(insertDataQuery);
                               JOptionPane.showMessageDialog(signup_Two.this, "Data Entered Successfully");
+
+                              setVisible(false);
+                              new signup_Three(formno).setVisible(true);
     
                 // Display success message or perform any other actions as needed
                 System.out.println("Data inserted successfully!");

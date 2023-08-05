@@ -17,7 +17,7 @@ public class login extends JFrame implements ActionListener {
 
 
         ImageIcon gifIcon = new ImageIcon(ClassLoader.getSystemResource("icons/login-2385.gif"));
-        Image gifImage = gifIcon.getImage().getScaledInstance(150, 200, Image.SCALE_DEFAULT);
+        Image gifImage = gifIcon.getImage().getScaledInstance(250, 300, Image.SCALE_DEFAULT);
         ImageIcon gifImageIcon = new ImageIcon(gifImage);
         JLabel gifLabel = new JLabel(gifImageIcon);
         gifLabel.setHorizontalAlignment(JLabel.CENTER);

@@ -4,29 +4,23 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.sql.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Random;
 
-public class signup_Three extends JFrame {
+public class signup_Three extends JFrame implements ActionListener {
     JCheckBox c1,c2,c3,c4,c5,c6,c7;
         JRadioButton r1,r2,r3,r4;
+        JButton submit,cancel;
         String formno;
-    signup_Three(){
-         setLayout(null);
-        setTitle("Page 3");
-        setSize(1300,1300);
-        getContentPane().setBackground(Color.white);
-        setLocation(300,10);
-        setVisible(true);
-
+    signup_Three(String formno){
+        this.formno=formno;
         ImageIcon backgroundImageIcon = new ImageIcon("icons/texture-2119292.jpg");
         Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         setContentPane(new JLabel(new ImageIcon(backgroundImage)));
 
-        JLabel adDetailsJLabel = new JLabel("Account Details ");
+
+        JLabel adDetailsJLabel = new JLabel("ACCOUNT DETAILS ");
         adDetailsJLabel.setFont(new Font("Raleway",Font.BOLD ,30));
-        adDetailsJLabel.setBounds(290,80,400,30);
+        adDetailsJLabel.setBounds(500,80,400,30);
         add(adDetailsJLabel);
 
         JLabel typeJLabel = new JLabel("Account Type");
@@ -162,8 +156,111 @@ public class signup_Three extends JFrame {
         add(c7);
         c7.setOpaque(false);
 
+        submit = new JButton("Submit");
+        submit.setForeground(Color.black);
+        submit.setBackground(Color.decode("#FFB74D")); // For button color change
+        submit.setFont(new Font("Raleway", Font.PLAIN, 20));
+        submit.setBounds(400, 650, 100, 30);
+        submit.addActionListener(this); // Add action listener to the next button
+        add(submit);
+
+        cancel = new JButton("Cancel");
+        cancel.setForeground(Color.black);
+        cancel.setBackground(Color.decode("#FFB74D")); // For button color change
+        cancel.setFont(new Font("Raleway", Font.PLAIN, 20));
+        cancel.setBounds(520, 650, 100, 30);
+        cancel.addActionListener(this); // Add action listener to the cancel button
+        add(cancel);
+        setLayout(null);
+        setTitle("Page 3");
+        setSize(1300,1300);
+        getContentPane().setBackground(Color.white);
+        setLocation(0,0);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+
     }
     public static void main(String[] args) {
-        new signup_Three();
+        new signup_Three("");
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==submit)
+        {
+            String accounttype=null;
+            if(r1.isSelected()){
+                accounttype="Saving Account";
+            }else if(r2.isSelected()){
+                accounttype="Fixed Deposit Account";
+            }
+            else if(r3.isSelected()){
+                accounttype="Current Account";
+            }
+            else if(r4.isSelected()){
+                accounttype="Recurring Deposits Account";
+            }
+            Random random=new Random();
+            String cardnumber = "" +Math.abs((random.nextLong()% 90000000L)+50409636000000000L);
+            String pinnumber= ""+Math.abs((random.nextLong()%9000L)+1000L);
+            String facilityString="";
+            if(c1.isSelected()){
+                facilityString=facilityString+"ATM CARD";
+            }
+            else if(c2.isSelected()){
+                facilityString+="Internet Banking";
+            }
+            else if(c3.isSelected()){
+                facilityString+= "Mobile Banking";
+            }
+            else if(c4.isSelected()){
+            facilityString+= "EMAIL AND SMS ALERT";
+            }
+            else if(c5.isSelected()){
+                  facilityString+= "CHEQUE BOOK";
+            }
+            else if(c6.isSelected()){
+                  facilityString+= "E-Statement";
+            }
+
+        //Insert Data into Database using SQL Query and JDBC Connection
+            try {
+                if(accounttype.equals("")){
+                    JOptionPane.showMessageDialog(signup_Three.this,"Account Type is Required");
+                }
+                else{
+                    Conn conn= new Conn();
+                    String insertDataQuery = "INSERT INTO signup_Three VALUES ('" +
+                    formno + "', '" + accounttype + "', '" + cardnumber + "', '" + pinnumber + "', '" + facilityString+ "')";
+
+                    String query2="INSERT INTO login VALUES('"+formno+"','"+cardnumber+"','"+pinnumber+"')";
+
+              conn.s.executeUpdate(insertDataQuery);
+              conn.s.executeUpdate(query2);
+              JOptionPane.showMessageDialog(signup_Three.this, "Data Entered Successfully \nCardNumber:"+cardnumber + "\nPinNumber:"+pinnumber);
+              System.out.println("Printed");
+              
+                }
+            } catch (Exception E) {
+                JOptionPane.showMessageDialog(signup_Three.this, "Error occurred. Please Fill the details and try again.");
+                System.out.println(E);
+            }
+        }
+        else if(e.getSource()==cancel){
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(
+                signup_Three.this,
+                "Are you sure you want to cancel?",
+                "Cancel Confirmation",
+                dialogButton
+            );
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                // User confirmed the cancel action
+                dispose(); // Close the current window
+            }
+            else{
+                JOptionPane.showMessageDialog(signup_Three.this, "Cancellation aborted.");
+            }
+        }
     }
     }
