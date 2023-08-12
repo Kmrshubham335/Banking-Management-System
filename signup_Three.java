@@ -181,6 +181,7 @@ public class signup_Three extends JFrame implements ActionListener {
 
     }
     public static void main(String[] args) {
+        
         new signup_Three("");
     }
     

@@ -169,7 +169,7 @@ public class signup_Two extends JFrame implements ActionListener {
         next.setForeground(Color.black);
         next.setBackground(Color.decode("#FFB74D")); // For button color change
         next.setFont(new Font("Raleway", Font.PLAIN, 20));
-        next.setBounds(900, 660, 80, 30);
+        next.setBounds(900, 600, 80, 30);
         next.addActionListener(this); // Add action listener to the next button
         add(next);
           setLayout(null);
@@ -180,7 +180,9 @@ public class signup_Two extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+      String str="javax.swing.plaf.nimbus.NimbusLookAndFeel";
+      UIManager.setLookAndFeel(str);
         new signup_Two("");
     }
 

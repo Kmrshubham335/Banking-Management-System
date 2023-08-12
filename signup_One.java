@@ -16,11 +16,7 @@ public class signup_One extends JFrame implements ActionListener {
     JRadioButton male, female, single, married;
 
     signup_One() {
-        setLayout(null);
-        getContentPane().setBackground(Color.lightGray);
-        setSize(850, 800);
-        setVisible(true);
-        setLocation(300, 10);
+
 
         Random random = new Random();
         ran = Math.abs((random.nextLong() % 9000L) + 1000L);
@@ -189,6 +185,11 @@ public class signup_One extends JFrame implements ActionListener {
         next.setBounds(900, 660, 80, 30);
         next.addActionListener(this); // Add action listener to the next button
         add(next);
+        setLayout(null);
+        getContentPane().setBackground(Color.lightGray);
+        setSize(1300, 1300);
+        setVisible(true);
+        setLocation(0,0);
 
     }
 

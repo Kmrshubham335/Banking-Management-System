@@ -7,4 +7,6 @@
 6.Now user can sign-up by providing all required fields such as Name Email DateOfBirth with other details.
 7.User data is stored into Database after successful registration process.
 8.Added Validation in signup_Two Page.
+9. Creation of Transaction frame.
+10. Changing the UI of sing up page.
 I will be adding more functionality to the project in next few days.
