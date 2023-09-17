@@ -239,9 +239,11 @@ public class signup_Three extends JFrame implements ActionListener {
               conn.s.executeUpdate(insertDataQuery);
               conn.s.executeUpdate(query2);
               JOptionPane.showMessageDialog(signup_Three.this, "Data Entered Successfully \nCardNumber:"+cardnumber + "\nPinNumber:"+pinnumber);
+              setVisible(false);
+              new deposit(pinnumber).setVisible(true);
               System.out.println("Printed");
-              
                 }
+
             } catch (Exception E) {
                 JOptionPane.showMessageDialog(signup_Three.this, "Error occurred. Please Fill the details and try again.");
                 System.out.println(E);
@@ -256,8 +258,8 @@ public class signup_Three extends JFrame implements ActionListener {
                 dialogButton
             );
             if (dialogResult == JOptionPane.YES_OPTION) {
-                // User confirmed the cancel action
-                dispose(); // Close the current window
+                setVisible(false);
+                new login().setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(signup_Three.this, "Cancellation aborted.");

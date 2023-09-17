@@ -238,6 +238,7 @@ public class signup_Two extends JFrame implements ActionListener {
             }
             else{
               JOptionPane.showMessageDialog(signup_Two.this,"Invalid PAN or Aadhar card number. Authentication failed!");
+
             }
             try {
                 Conn connection=new Conn();
@@ -253,7 +254,7 @@ public class signup_Two extends JFrame implements ActionListener {
     
                 // Display success message or perform any other actions as needed
                 System.out.println("Data inserted successfully!");
-            } catch (SQLException ex) {
+            }catch (SQLException ex) {
                 System.out.println("Error: " + ex);
             }
           }                  

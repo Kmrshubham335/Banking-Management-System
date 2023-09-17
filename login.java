@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class login extends JFrame implements ActionListener {
     private JTextField cardNoTextField;
@@ -61,10 +63,27 @@ public class login extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getActionCommand().equals("SIGN IN")) {
+            
+            try {
+                Conn con =new Conn();
             String cardNumber = cardNoTextField.getText();
             String pin = new String(pinNoPasswordField.getPassword());
+            String q  = "select * from login where cardnumber = '"+cardNumber+"' and pinnumber = '"+pin+"'";
+             ResultSet rs = con.s.executeQuery(q);
+             if(rs.next()){
+                setVisible(false);
+                new Transaction(pin).setVisible(true);
+             }
+             else{
+                JOptionPane.showMessageDialog(null,"Incorrect Card number or pin");
+             }
+            } catch (SQLException e) {
+                
+                e.printStackTrace();
+            }
+        }
             // Add login validation and other logic here
-        } else if (ae.getActionCommand().equals("CLEAR")) {
+         else if (ae.getActionCommand().equals("CLEAR")) {
             cardNoTextField.setText("");
             pinNoPasswordField.setText("");
         } else if (ae.getActionCommand().equals("Sign up")) {
