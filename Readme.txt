@@ -9,4 +9,4 @@
 8.Added Validation in signup_Two Page.
 9. Creation of Transaction frame.
 10. Changing the UI of sing up page.
-I will be adding more functionality to the project in next few days.
+11.Transaction frame classes has been completed.

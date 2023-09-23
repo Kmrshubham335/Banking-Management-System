@@ -94,28 +94,40 @@ public class fastcash extends JFrame implements ActionListener {
 
         }
         else{
-            String amount =((JButton)e.getSource()).getText().substring(3); //putting text from the button
+            String amount1 =((JButton)e.getSource()).getText().substring(2); //putting text from the button
             try {
                 Conn c=new Conn();
-                ResultSet rs =c.s.executeQuery("select * from deposit where pin='"+pin+"'");
+
+                ResultSet rs = c.s.executeQuery("SELECT * FROM deposit WHERE pin='" + pin + "'");
                 int balance =0;
+            
                 while(rs.next()){
-                    if(rs.getString("type").equals(amount)){
-                    balance+=Integer.parseInt(rs.getString("amount"));
+                    String prevamt;
+                    prevamt = rs.getString("amount");
+                    int Prevamt = Integer.parseInt(prevamt);
+                    
+                    if(rs.getString("type").equals("deposit")){
+                    balance += Integer.parseInt(amount1);
+                    String update = ""+balance+Prevamt;
+                    String query = "update deposit set amount = '"+update+"'";
+                    c.s.executeUpdate(query);
                 }
                     else{
-                        balance-=Integer.parseInt(rs.getString(amount)) ;
+                        String update =""+(Prevamt-balance);
+                        String query = "update deposit set amount = '"+update+"'";
+                        c.s.executeUpdate(query);
+                        
                     }
                 }
-                if(e.getSource()!=jexitButton && balance<Integer.parseInt(amount)){
+                if(e.getSource()!=jexitButton && balance<Integer.parseInt(amount1)){
                     JOptionPane.showMessageDialog(null,"Insufficient Balance");
                     return;
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String transactionDate = sdf.format(new Date());
-                String query = "insert into deposit values('" + pin + "','" + transactionDate + "','Withdrawal','" + amount + "')";
+                String query = "insert into deposit values('" + pin + "','" + transactionDate + "','Withdrawal','" + amount1 + "')";
                 c.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Amount Withdrawn Successfully");
+                JOptionPane.showMessageDialog(null,"RS"+ amount1+ "Withdrawn Successfully");
             } 
             catch (SQLException e1) {
                 e1.printStackTrace();

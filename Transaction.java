@@ -79,6 +79,13 @@ public class Transaction extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
+        String str1="com.jtattoo.plaf.acryl.AcrylLookAndFeel";
+        try {
+            UIManager.setLookAndFeel(str1);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         new Transaction("");
     }
 
@@ -102,6 +109,14 @@ public class Transaction extends JFrame implements ActionListener {
         else if(e.getSource()==jpin){
             setVisible(false);
             new PinChange(pin).setVisible(true);
+        }
+        else if(e.getSource()==balanceButton){
+            setVisible(false);
+            new BalanceEnq(pin).setVisible(true);
+        }
+        else if(e.getSource()==ministatement){
+            setVisible(false);
+            new miniState(pin).setVisible(true);
         }
     }
 }

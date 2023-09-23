@@ -58,11 +58,9 @@ class PinChange extends JFrame implements ActionListener{
         jb2.addActionListener(this);
         jb2.setBackground(Color.BLACK);
         jb2.setForeground(Color.WHITE);
-        image.add(jb2);
+        image.add(jb2); 
 
- clearButton = new JButton("Clear");
-clearButton.setBounds(400, 320, 100, 20);
-image.add(clearButton);
+        
 
 
         setSize(900, 1000);
